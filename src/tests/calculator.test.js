@@ -1,4 +1,4 @@
-const { add, subtract, multiply, divide } = require("../calculator");
+const { add, subtract, multiply, divide, modulo, power, squareRoot } = require("../calculator");
 
 // Addition (+)
 describe("add", () => {
@@ -37,4 +37,36 @@ describe("divide", () => {
   test("-12 / 4 = -3", () => expect(divide(-12, 4)).toBe(-3));
   test("division by zero throws", () =>
     expect(() => divide(5, 0)).toThrow("Division by zero is not allowed."));
+});
+
+// Modulo (%)
+describe("modulo", () => {
+  test("5 % 2 = 1", () => expect(modulo(5, 2)).toBe(1));
+  test("10 % 3 = 1", () => expect(modulo(10, 3)).toBe(1));
+  test("9 % 3 = 0 (divisible)", () => expect(modulo(9, 3)).toBe(0));
+  test("-7 % 3 = -1", () => expect(modulo(-7, 3)).toBe(-1));
+  test("0 % 5 = 0", () => expect(modulo(0, 5)).toBe(0));
+  test("modulo by zero throws", () =>
+    expect(() => modulo(5, 0)).toThrow("Modulo by zero is not allowed."));
+});
+
+// Exponentiation (**)
+describe("power", () => {
+  test("2 ^ 3 = 8", () => expect(power(2, 3)).toBe(8));
+  test("2 ^ 8 = 256", () => expect(power(2, 8)).toBe(256));
+  test("5 ^ 0 = 1", () => expect(power(5, 0)).toBe(1));
+  test("any ^ 1 = itself", () => expect(power(7, 1)).toBe(7));
+  test("3 ^ -1 = 0.333...", () => expect(power(3, -1)).toBeCloseTo(0.333));
+  test("-2 ^ 3 = -8", () => expect(power(-2, 3)).toBe(-8));
+});
+
+// Square root (√)
+describe("squareRoot", () => {
+  test("√16 = 4", () => expect(squareRoot(16)).toBe(4));
+  test("√144 = 12", () => expect(squareRoot(144)).toBe(12));
+  test("√0 = 0", () => expect(squareRoot(0)).toBe(0));
+  test("√2 ≈ 1.414", () => expect(squareRoot(2)).toBeCloseTo(1.414));
+  test("√1 = 1", () => expect(squareRoot(1)).toBe(1));
+  test("negative number throws", () =>
+    expect(() => squareRoot(-1)).toThrow("Square root of a negative number is not allowed."));
 });
